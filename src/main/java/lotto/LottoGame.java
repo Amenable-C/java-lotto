@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.domain.WinningLotto;
 
 public class LottoGame {
     private static final int TICKET_PRICE = 1000;
@@ -17,6 +18,45 @@ public class LottoGame {
 
         List<Lotto> lottos;
         lottos = createLottos(lottoAmount);
+
+        WinningLotto winningLotto = createWinningLotto();
+    }
+
+    private WinningLotto createWinningLotto() {
+        Lotto lotto = new Lotto(getWinningNumbers());
+        int bonusNumber = getBounusNumber();
+        WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
+
+        return winningLotto;
+    }
+
+    private List<Integer> getWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        List<Integer> winningNumbers = new ArrayList<>();
+        String winningNumbersWithComma = readLine();
+        List<String> numbers = List.of(winningNumbersWithComma.split(","));
+        if(!isValidWinningNumbers(numbers))
+            throw new IllegalArgumentException();
+
+        for(String number : numbers){
+            winningNumbers.add(Integer.parseInt(number));
+        }
+
+        return winningNumbers;
+    }
+
+    private boolean isValidWinningNumbers(List<String> numbers) {
+        if(!isValidWinningNumbersSize(numbers))
+            return false;
+        return true;
+    }
+
+    private boolean isValidWinningNumbersSize(List<String> numbers) {
+        return numbers.size() == 6;
+    }
+
+    private int getBounusNumber(){
+        return 0;
     }
 
     private List<Lotto> createLottos(int lottoAmount) {
