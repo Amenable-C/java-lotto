@@ -16,6 +16,7 @@ public class LottoGame {
     private static final int LOTTO_NUMBERS_SIZE = 6;
     private static final int LOTTO_MAX_NUMBER = 45;
     private static final int LOTTO_MIN_NUMBER = 1;
+    private static final int PERCENTAGE = 100;
 
     public void start() {
         int lottoAmount = getLottoAmount();
@@ -40,6 +41,18 @@ public class LottoGame {
         }
 
         printResult(result);
+        
+        int lottoAmount = lottos.size();
+        printYieldRate(result, lottoAmount);
+    }
+
+    private void printYieldRate(Map<Rank, Integer> result, int lottoAmount) {
+        double yieldRate = 0;
+
+        for(Rank rank : result.keySet()){
+            yieldRate += (double)((rank.getWinningMoney()) / (lottoAmount * TICKET_PRICE)) * result.get(rank) * PERCENTAGE;
+        }
+        System.out.println("총 수익률은 " + String.format("%.1f", yieldRate) + "%입니다.");
     }
 
     private void printResult(Map<Rank, Integer> result) {

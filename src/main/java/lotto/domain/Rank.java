@@ -42,4 +42,8 @@ public enum Rank {
             System.out.println(message + count + "개");
         }
     }
+
+    public int getWinningMoney() {
+        return winningMoney;
+    }
 }
