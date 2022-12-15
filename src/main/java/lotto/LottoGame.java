@@ -26,10 +26,14 @@ public class LottoGame {
     }
 
     private boolean isValidPayment(String payment) {
-        if(!isValidPaymentCharacter(payment) || !isValidPaymentScope(payment)){
+        if(!isValidPaymentCharacter(payment) || !isValidPaymentScope(payment) || !isValidPaymentUnit(payment)){
             return false;
         }
         return true;
+    }
+
+    private boolean isValidPaymentUnit(String payment) {
+        return Integer.parseInt(payment) % TICKET_PRICE == 0;
     }
 
     private boolean isValidPaymentScope(String payment) {
