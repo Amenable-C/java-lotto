@@ -2,10 +2,38 @@ package lotto;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class LottoGame {
     private static final int TICKET_PRICE = 1000;
+    private static final int LOTTO_NUMBERS_SIZE = 6;
+    private static final int LOTTO_MAX_NUMBER = 45;
+    private static final int LOTTO_MIN_NUMBER = 1;
     public void start() {
         int lottoAmount = getLottoAmount();
+
+        List<Lotto> lottos;
+        lottos = createLottos(lottoAmount);
+    }
+
+    private List<Lotto> createLottos(int lottoAmount) {
+        System.out.println(lottoAmount + "개를 구매했습니다.");
+        List<Lotto> lottos = new ArrayList<>();
+
+        for(int idx = 0; idx < lottoAmount; idx++){
+            lottos.add(createLotto());
+        }
+        return lottos;
+    }
+
+    private Lotto createLotto(){
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBERS_SIZE);
+        Collections.sort(lottoNumbers);
+
+        return new Lotto(lottoNumbers);
     }
 
     private int getLottoAmount() {
