@@ -24,7 +24,7 @@ public class LottoGame {
 
     private WinningLotto createWinningLotto() {
         Lotto lotto = new Lotto(getWinningNumbers());
-        int bonusNumber = getBounusNumber();
+        int bonusNumber = getBonusNumber();
         WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
 
         return winningLotto;
@@ -55,8 +55,12 @@ public class LottoGame {
         return numbers.size() == 6;
     }
 
-    private int getBounusNumber(){
-        return 0;
+    private int getBonusNumber(){
+        System.out.println("보너스 볼을 입력해 주세요.");
+
+        String bonusNumber = readLine();
+
+        return Integer.parseInt(bonusNumber);
     }
 
     private List<Lotto> createLottos(int lottoAmount) {
