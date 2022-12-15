@@ -84,7 +84,7 @@ public class LottoGame {
         String winningNumbersWithComma = readLine();
         List<String> numbers = List.of(winningNumbersWithComma.split(","));
         if (!isValidWinningNumbers(numbers)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR]");
         }
 
         for (String number : numbers) {
@@ -119,7 +119,7 @@ public class LottoGame {
 
         String bonusNumber = readLine();
         if (!isValidBonusNumber(bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR]");
         }
 
         return Integer.parseInt(bonusNumber);
@@ -161,7 +161,7 @@ public class LottoGame {
         String payment = readLine();
 
         if (!isValidPayment(payment)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR]");
         }
 
         return Integer.parseInt(payment);
